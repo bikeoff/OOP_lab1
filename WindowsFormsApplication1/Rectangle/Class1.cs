@@ -42,6 +42,10 @@ namespace Rectangles
                 lowerBoundCoordinate = firstPointOfDiagonal.y;
             }
         }
+        public override string draw()
+        {
+            return string.Format("Rectangle({0}, {1}, {2}, {3})\n", xLeft, yTop, xRight, yBottom);
+        }
 
         public int xLeft
         {
@@ -72,9 +76,9 @@ namespace Rectangles
             }
         }
 
-        internal int leftBoundCoordinate;
-        internal int upperBoundCoordinate;
-        internal int rightBoundCoordinate;
-        internal int lowerBoundCoordinate;
+        private int leftBoundCoordinate;
+        private int upperBoundCoordinate;
+        private int rightBoundCoordinate;
+        private int lowerBoundCoordinate;
     }
 }

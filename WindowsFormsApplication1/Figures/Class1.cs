@@ -11,8 +11,9 @@ namespace Figures
         public int x;
         public int y;
     }
-    public class Figure
-    {       
-        public virtual void draw();
+
+    public abstract class Figure
+    {
+        public abstract string draw();
     }
 }

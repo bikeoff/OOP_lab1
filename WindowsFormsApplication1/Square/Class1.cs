@@ -12,7 +12,8 @@ namespace Squares
     {
         public Square()
         {
-            leftBoundCoordinate = upperBoundCoordinate = rightBoundCoordinate = lowerBoundCoordinate = 0;
+            firstPointOfDiagonal.x = firstPointOfDiagonal.y = secondPointOfDiagonal.x = secondPointOfDiagonal.x = 0;
+            writeSquareParametersOnDiagonal(firstPointOfDiagonal, secondPointOfDiagonal);
         }
         public Square(Tpoint startPointOfDiagonal, Tpoint endPointOfDiagonal)
         {
@@ -26,6 +27,10 @@ namespace Squares
             secondPointOfDiagonal = endPointOfDiagonal;
             correctDiagonalForConversionToSquare();
             writeRectangleParametersOnDiagonal(firstPointOfDiagonal, secondPointOfDiagonal);           
+        }
+        public override string draw()
+        {
+            return string.Format("Square({0}, {1}, {2}, {3})\n", xLeft, yTop, xRight, yBottom);
         }
 
         private Tpoint firstPointOfDiagonal;
