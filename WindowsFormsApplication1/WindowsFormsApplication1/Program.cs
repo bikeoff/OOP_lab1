@@ -32,8 +32,8 @@ namespace WindowsFormsApplication1
             Tpoint point1, point2;
             point1.x = 10;
             point1.y = 10;
-            point2.x = 20;
-            point2.y = 30;
+            point2.x = 150;
+            point2.y = 100;
             list.Add(new Rectangle(point1, point2));
             list.Add(new Square(point1, point2));
         }

@@ -21,15 +21,24 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            richTextBox1.Clear();
-            foreach (Figure figure in Program.list)
-            {
-                if (figure is Squares.Square)
-                    richTextBox1.AppendText((figure as Squares.Square).draw());
-                else if (figure is Rectangles.Rectangle)
-                    richTextBox1.AppendText((figure as Rectangles.Rectangle).draw());
-            }
-        }
+            Rectangles.Rectangle rect;
+            var bmp = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height);
 
+            using (Graphics canvas = Graphics.FromImage(bmp))
+            {
+                canvas.Clear(Color.White);
+                foreach (Figure figure in Program.list)
+                {
+                    if (figure is Rectangles.Rectangle)
+                    {
+                        rect = figure as Rectangles.Rectangle;
+                        {
+                            canvas.DrawRectangle(Pens.Black, rect.xLeft, rect.yTop, rect.xRight - rect.xLeft, rect.yBottom - rect.yTop);
+                        }                       
+                    }
+                }                
+            }
+            pictureBox1.Image = bmp;
+        }
     }
 }

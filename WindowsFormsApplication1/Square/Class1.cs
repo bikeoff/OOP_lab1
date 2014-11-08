@@ -28,10 +28,6 @@ namespace Squares
             correctDiagonalForConversionToSquare();
             writeRectangleParametersOnDiagonal(firstPointOfDiagonal, secondPointOfDiagonal);           
         }
-        public override string draw()
-        {
-            return string.Format("Square({0}, {1}, {2}, {3})\n", xLeft, yTop, xRight, yBottom);
-        }
 
         private Tpoint firstPointOfDiagonal;
         private Tpoint secondPointOfDiagonal;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using Figures;
 
 namespace Rectangles
@@ -41,10 +42,6 @@ namespace Rectangles
                 upperBoundCoordinate = secondPointOfDiagonal.y;
                 lowerBoundCoordinate = firstPointOfDiagonal.y;
             }
-        }
-        public override string draw()
-        {
-            return string.Format("Rectangle({0}, {1}, {2}, {3})\n", xLeft, yTop, xRight, yBottom);
         }
 
         public int xLeft
