@@ -3,33 +3,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Figures;
 using Rectangles;
 
 namespace Squares
 {
     public class Square : Rectangle
     {
-        public Square(int leftCoord, int upCoord, int rightCoord, int downCoord)
+        public Square()
         {
-            up = upCoord;
-            down = downCoord;
-            left = leftCoord;
-            right = rightCoord;
-            correctCoordinatesForSquare();
+            leftBoundCoordinate = upperBoundCoordinate = rightBoundCoordinate = lowerBoundCoordinate = 0;
+        }
+        public Square(Tpoint startPointOfDiagonal, Tpoint endPointOfDiagonal)
+        {
+            writeSquareParametersOnDiagonal(startPointOfDiagonal, endPointOfDiagonal);
         }
 
-        private void correctCoordinatesForSquare() //wrong function - engaged later
+        public void writeSquareParametersOnDiagonal(Tpoint startPointOfDiagonal,
+                                                    Tpoint endPointOfDiagonal)
         {
-            int width, height, squareSideLength;
+            firstPointOfDiagonal = startPointOfDiagonal;
+            secondPointOfDiagonal = endPointOfDiagonal;
+            correctDiagonalForConversionToSquare();
+            writeRectangleParametersOnDiagonal(firstPointOfDiagonal, secondPointOfDiagonal);           
+        }
 
-            width = right - left;
-            height = down - up;
+        private Tpoint firstPointOfDiagonal;
+        private Tpoint secondPointOfDiagonal;
+
+        private void correctDiagonalForConversionToSquare()
+        {
+            int sideLengthOfSquare;
+            int width = Math.Abs(secondPointOfDiagonal.x - firstPointOfDiagonal.x);
+            int height = Math.Abs(secondPointOfDiagonal.y - firstPointOfDiagonal.y);
             if (width > height)
-                squareSideLength = width;
+            {
+                sideLengthOfSquare = width;
+                if (secondPointOfDiagonal.y < firstPointOfDiagonal.y)
+                    secondPointOfDiagonal.y = firstPointOfDiagonal.y - sideLengthOfSquare;
+                else
+                    secondPointOfDiagonal.y = firstPointOfDiagonal.y + sideLengthOfSquare;
+            }                
             else
-                squareSideLength = height;
-            right = left + squareSideLength;
-            down = up + squareSideLength;
+            {
+                sideLengthOfSquare = height;
+                if (secondPointOfDiagonal.x < firstPointOfDiagonal.x)
+                    secondPointOfDiagonal.x = firstPointOfDiagonal.x - sideLengthOfSquare;
+                else
+                    secondPointOfDiagonal.x = firstPointOfDiagonal.x + sideLengthOfSquare;
+            }              
         }
     }
 }

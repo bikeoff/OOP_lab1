@@ -3,66 +3,78 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Figures;
 
 namespace Rectangles
 {
-    public class Rectangle
+    public class Rectangle : Figure
     {
-        public Rectangle(int leftCoord, int upCoord, int rightCoord, int downCoord)
+        public Rectangle()
         {
-            up = upCoord;
-            down = downCoord;
-            left = leftCoord;
-            right = rightCoord;
+            leftBoundCoordinate = upperBoundCoordinate = rightBoundCoordinate = lowerBoundCoordinate = 0;
         }
-        public int left
+        public Rectangle(Tpoint startPointOfDiagonal, Tpoint endPointOfDiagonal)
         {
-            get
-            {
-                return coordinateOfLeftBound;
-            }
-            set
-            {
-                coordinateOfLeftBound = value;
-            }
+            writeRectangleParametersOnDiagonal(startPointOfDiagonal, endPointOfDiagonal);
         }
-        public int right
+
+        public void writeRectangleParametersOnDiagonal(Tpoint firstPointOfDiagonal,
+                                                       Tpoint secondPointOfDiagonal)
         {
-            get
+            if (firstPointOfDiagonal.x < secondPointOfDiagonal.x)
             {
-                return coordinateOfRightBound;
+                leftBoundCoordinate = firstPointOfDiagonal.x;
+                rightBoundCoordinate = secondPointOfDiagonal.x;
             }
-            set
+            else
             {
-                coordinateOfRightBound = value;
+                leftBoundCoordinate = secondPointOfDiagonal.x;
+                rightBoundCoordinate = firstPointOfDiagonal.x; 
             }
-        }
-        public int up
-        {
-            get
+            if (firstPointOfDiagonal.y < secondPointOfDiagonal.y)
             {
-                return coordinateOfUpperBound;
+                upperBoundCoordinate = firstPointOfDiagonal.y;
+                lowerBoundCoordinate = secondPointOfDiagonal.y;
             }
-            set
+            else
             {
-                coordinateOfUpperBound = value;
-            }
-        }
-        public int down
-        {
-            get
-            {
-                return coordinateOfLowerBound;
-            }
-            set
-            {
-                coordinateOfLowerBound = value;
+                upperBoundCoordinate = secondPointOfDiagonal.y;
+                lowerBoundCoordinate = firstPointOfDiagonal.y;
             }
         }
 
-        private int coordinateOfUpperBound;
-        private int coordinateOfLowerBound;
-        private int coordinateOfLeftBound;
-        private int coordinateOfRightBound;
+        public int xLeft
+        {
+            get
+            {
+                return leftBoundCoordinate;
+            }
+        }
+        public int xRight
+        {
+            get
+            {
+                return rightBoundCoordinate;
+            }
+        }
+        public int yTop
+        {
+            get
+            {
+                return upperBoundCoordinate;
+            }
+        }
+        public int yBottom
+        {
+            get
+            {
+                return lowerBoundCoordinate;
+            }
+        }
+
+        internal int leftBoundCoordinate;
+        internal int upperBoundCoordinate;
+        internal int rightBoundCoordinate;
+        internal int lowerBoundCoordinate;
     }
 }
