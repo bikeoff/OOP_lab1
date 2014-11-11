@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication1;
 using Figures;
 
 namespace WindowsFormsApplication1
@@ -22,6 +15,8 @@ namespace WindowsFormsApplication1
         private void button1_Click(object sender, EventArgs e)
         {
             Rectangles.Rectangle rect;
+            Ellipses.Ellipse elps;
+            Lines.Line line;
             var bmp = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height);
 
             using (Graphics canvas = Graphics.FromImage(bmp))
@@ -32,12 +27,21 @@ namespace WindowsFormsApplication1
                     if (figure is Rectangles.Rectangle)
                     {
                         rect = figure as Rectangles.Rectangle;
-                        {
-                            canvas.DrawRectangle(Pens.Black, rect.xLeft, rect.yTop, rect.xRight - rect.xLeft, rect.yBottom - rect.yTop);
-                        }                       
+                        canvas.DrawRectangle(Pens.Black, rect.xLeft, rect.yTop, rect.xRight - rect.xLeft, rect.yBottom - rect.yTop);
+                    }
+                    else if (figure is Ellipses.Ellipse)
+                    {
+                        elps = figure as Ellipses.Ellipse;
+                        canvas.DrawEllipse(Pens.Black, elps.xCenter - elps.halfWidth, elps.yCenter - elps.halfHeight, elps.halfWidth * 2, elps.halfHeight * 2);
+                    }
+                    else if (figure is Lines.Line)
+                    {
+                        line = figure as Lines.Line;
+                        canvas.DrawLine(Pens.Black, line.xStart, line.yStart, line.xEnd, line.yEnd);
                     }
                 }                
             }
+
             pictureBox1.Image = bmp;
         }
     }

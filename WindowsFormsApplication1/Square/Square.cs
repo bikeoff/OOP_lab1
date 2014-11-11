@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Figures;
 using Rectangles;
 
@@ -20,8 +16,7 @@ namespace Squares
             writeSquareParametersOnDiagonal(startPointOfDiagonal, endPointOfDiagonal);
         }
 
-        public void writeSquareParametersOnDiagonal(Tpoint startPointOfDiagonal,
-                                                    Tpoint endPointOfDiagonal)
+        public void writeSquareParametersOnDiagonal(Tpoint startPointOfDiagonal, Tpoint endPointOfDiagonal)
         {
             firstPointOfDiagonal = startPointOfDiagonal;
             secondPointOfDiagonal = endPointOfDiagonal;

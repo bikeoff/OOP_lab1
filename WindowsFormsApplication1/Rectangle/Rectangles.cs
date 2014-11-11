@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using Figures;
+﻿using Figures;
 
 namespace Rectangles
 {
@@ -19,8 +13,7 @@ namespace Rectangles
             writeRectangleParametersOnDiagonal(startPointOfDiagonal, endPointOfDiagonal);
         }
 
-        public void writeRectangleParametersOnDiagonal(Tpoint firstPointOfDiagonal,
-                                                       Tpoint secondPointOfDiagonal)
+        public void writeRectangleParametersOnDiagonal(Tpoint firstPointOfDiagonal, Tpoint secondPointOfDiagonal)
         {
             if (firstPointOfDiagonal.x < secondPointOfDiagonal.x)
             {

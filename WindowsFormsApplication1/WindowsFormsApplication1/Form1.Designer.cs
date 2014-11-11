@@ -58,6 +58,8 @@
             this.ClientSize = new System.Drawing.Size(708, 422);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "OOP, lab. 1, Baikov";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
