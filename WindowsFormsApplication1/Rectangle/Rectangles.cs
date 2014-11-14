@@ -1,4 +1,5 @@
 ﻿using Figures;
+using System.Drawing;
 
 namespace Rectangles
 {
@@ -8,12 +9,17 @@ namespace Rectangles
         {
             leftBoundCoordinate = upperBoundCoordinate = rightBoundCoordinate = lowerBoundCoordinate = 0;
         }
-        public Rectangle(Tpoint startPointOfDiagonal, Tpoint endPointOfDiagonal)
+        public Rectangle(PointStruct startPointOfDiagonal, PointStruct endPointOfDiagonal)
         {
             writeRectangleParametersOnDiagonal(startPointOfDiagonal, endPointOfDiagonal);
         }
 
-        public void writeRectangleParametersOnDiagonal(Tpoint firstPointOfDiagonal, Tpoint secondPointOfDiagonal)
+        public void DrawFigure(Graphics canvas)
+        {
+            canvas.DrawRectangle(Pens.Black, this.xLeft, this.yTop, this.xRight - this.xLeft, this.yBottom - this.yTop);
+        }
+
+        public void writeRectangleParametersOnDiagonal(PointStruct firstPointOfDiagonal, PointStruct secondPointOfDiagonal)
         {
             if (firstPointOfDiagonal.x < secondPointOfDiagonal.x)
             {

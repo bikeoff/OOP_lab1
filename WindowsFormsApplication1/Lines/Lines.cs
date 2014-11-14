@@ -8,7 +8,7 @@ namespace Lines
         {
             xStart = yStart = xEnd = yEnd = 0;
         }
-        public Line(Tpoint start, Tpoint end)
+        public Line(Point start, Point end)
         {
             xStart = start.x;
             yStart = start.y;

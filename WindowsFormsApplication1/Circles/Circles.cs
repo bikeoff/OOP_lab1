@@ -11,12 +11,12 @@ namespace Circles
             endPointOfDiagonalForTransformToCircle.x = endPointOfDiagonalForTransformToCircle.y = 0;
             writeCircleParametersOnDiagonal(endPointOfDiagonalForTransformToCircle, endPointOfDiagonalForTransformToCircle);
         }
-        public Circle(Tpoint center, Tpoint endPointOfDiagonal)
+        public Circle(Point center, Point endPointOfDiagonal)
         {
             writeCircleParametersOnDiagonal(center, endPointOfDiagonal);
         }
 
-        public void writeCircleParametersOnDiagonal(Tpoint center, Tpoint endPointOfDiagonal)
+        public void writeCircleParametersOnDiagonal(Point center, Point endPointOfDiagonal)
         {
             centerPoint = center;
             endPointOfDiagonalForTransformToCircle = endPointOfDiagonal;
@@ -33,8 +33,8 @@ namespace Circles
         }
 
         private double radiusOfCircle;
-        private Tpoint centerPoint;
-        private Tpoint endPointOfDiagonalForTransformToCircle;
+        private Point centerPoint;
+        private Point endPointOfDiagonalForTransformToCircle;
 
         private void correctDiagonalForConversionToSquare()
         {

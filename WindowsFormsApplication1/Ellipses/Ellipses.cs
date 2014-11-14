@@ -9,12 +9,12 @@ namespace Ellipses
         {
             centerXcoordinate = centerYcoordinate = widthOfHorizontalHalfShaft = heightOfVerticalHalfShaft = 0;
         }
-        public Ellipse(Tpoint centerPoint, Tpoint endPointOfDiagonal)
+        public Ellipse(Point centerPoint, Point endPointOfDiagonal)
         {
             writeEllipseParametersOnDiagonal(centerPoint, endPointOfDiagonal);
         }
 
-        public void writeEllipseParametersOnDiagonal(Tpoint firstPointOfDiagonal, Tpoint secondPointOfDiagonal)
+        public void writeEllipseParametersOnDiagonal(Point firstPointOfDiagonal, Point secondPointOfDiagonal)
         {
             centerXcoordinate = firstPointOfDiagonal.x;
             centerYcoordinate = firstPointOfDiagonal.y;

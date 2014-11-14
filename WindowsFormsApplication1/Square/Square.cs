@@ -11,12 +11,12 @@ namespace Squares
             firstPointOfDiagonal.x = firstPointOfDiagonal.y = secondPointOfDiagonal.x = secondPointOfDiagonal.x = 0;
             writeSquareParametersOnDiagonal(firstPointOfDiagonal, secondPointOfDiagonal);
         }
-        public Square(Tpoint startPointOfDiagonal, Tpoint endPointOfDiagonal)
+        public Square(Point startPointOfDiagonal, Point endPointOfDiagonal)
         {
             writeSquareParametersOnDiagonal(startPointOfDiagonal, endPointOfDiagonal);
         }
 
-        public void writeSquareParametersOnDiagonal(Tpoint startPointOfDiagonal, Tpoint endPointOfDiagonal)
+        public void writeSquareParametersOnDiagonal(Point startPointOfDiagonal, Point endPointOfDiagonal)
         {
             firstPointOfDiagonal = startPointOfDiagonal;
             secondPointOfDiagonal = endPointOfDiagonal;
@@ -24,8 +24,8 @@ namespace Squares
             writeRectangleParametersOnDiagonal(firstPointOfDiagonal, secondPointOfDiagonal);           
         }
 
-        private Tpoint firstPointOfDiagonal;
-        private Tpoint secondPointOfDiagonal;
+        private Point firstPointOfDiagonal;
+        private Point secondPointOfDiagonal;
 
         private void correctDiagonalForConversionToSquare()
         {

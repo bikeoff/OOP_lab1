@@ -78,29 +78,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Circles\Circles.csproj">
-      <Project>{174e1808-c756-467b-9c6c-c652433495e6}</Project>
-      <Name>Circles</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ellipses\Ellipses.csproj">
-      <Project>{a2674df5-e1ba-4b95-8584-2a3d3858ac3d}</Project>
-      <Name>Ellipses</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Figures\Figures.csproj">
       <Project>{0d34e565-2a8b-4888-8eef-f66f3fabd7f4}</Project>
       <Name>Figures</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Lines\Lines.csproj">
-      <Project>{7f9e5dc7-07e1-47a6-ac01-54aceb70ddd6}</Project>
-      <Name>Lines</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Rectangle\Rectangles.csproj">
       <Project>{bda93335-e063-4808-b819-366aeb56318b}</Project>
       <Name>Rectangles</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Square\Squares.csproj">
-      <Project>{3254fe77-fd85-4c7d-a0c0-59054731ed1b}</Project>
-      <Name>Squares</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

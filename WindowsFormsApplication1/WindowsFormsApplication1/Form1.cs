@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Figures;
+using System;
 using System.Drawing;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using Figures;
 
 namespace WindowsFormsApplication1
 {
@@ -9,40 +10,41 @@ namespace WindowsFormsApplication1
     {
         public Form1()
         {
+            InitializeFiguresList();
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Rectangles.Rectangle rect;
-            Ellipses.Ellipse elps;
-            Lines.Line line;
             var bmp = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height);
 
             using (Graphics canvas = Graphics.FromImage(bmp))
             {
                 canvas.Clear(Color.White);
-                foreach (Figure figure in Program.list)
-                {
-                    if (figure is Rectangles.Rectangle)
-                    {
-                        rect = figure as Rectangles.Rectangle;
-                        canvas.DrawRectangle(Pens.Black, rect.xLeft, rect.yTop, rect.xRight - rect.xLeft, rect.yBottom - rect.yTop);
-                    }
-                    else if (figure is Ellipses.Ellipse)
-                    {
-                        elps = figure as Ellipses.Ellipse;
-                        canvas.DrawEllipse(Pens.Black, elps.xCenter - elps.halfWidth, elps.yCenter - elps.halfHeight, elps.halfWidth * 2, elps.halfHeight * 2);
-                    }
-                    else if (figure is Lines.Line)
-                    {
-                        line = figure as Lines.Line;
-                        canvas.DrawLine(Pens.Black, line.xStart, line.yStart, line.xEnd, line.yEnd);
-                    }
-                }                
+                foreach (Figure figure in figuresList)
+                    figure.DrawFigure(canvas);
             }
 
             pictureBox1.Image = bmp;
         }
+
+        private List<Figure> figuresList;
+
+        private void InitializeFiguresList()
+        {
+            PointStruct point1, point2;
+
+            figuresList = new List<Figure>();
+            figuresList.Clear();
+            point1.x = 300;
+            point1.y = 200;
+            point2.x = 230;
+            point2.y = 350;
+            figuresList.Add(new Rectangles.Rectangle(point1, point2));
+/*            figuresList.Add(new Square(point1, point2));
+            figuresList.Add(new Ellipse(point1, point2));
+            figuresList.Add(new Circle(point1, point2));
+            figuresList.Add(new Line(point1, point2));
+*/        }
     }
 }

@@ -1,12 +1,13 @@
 ﻿namespace Figures
 {
-    public struct Tpoint
+    public struct PointStruct
     {
         public int x;
         public int y;
     }
 
-    public abstract class Figure
+    public interface Figure
     {
+        void DrawFigure(System.Drawing.Graphics canvas);
     }
 }
