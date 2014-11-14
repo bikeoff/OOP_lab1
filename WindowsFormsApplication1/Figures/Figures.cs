@@ -6,8 +6,27 @@
         public int y;
     }
 
-    public interface Figure
+    public abstract class Figure
     {
-        void DrawFigure(System.Drawing.Graphics canvas);
+        public abstract void DrawFigure(System.Drawing.Graphics canvas);
+
+        public PointStruct StartPoint
+        {
+            get
+            {
+                PointStruct result;
+                result.x = xStart;
+                result.y = yStart;
+                return result;
+            }
+            set
+            {
+                xStart = value.x;
+                yStart = value.y;
+            }
+        }
+
+        private int xStart;
+        private int yStart;
     }
 }

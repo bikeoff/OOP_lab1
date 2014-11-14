@@ -7,74 +7,61 @@ namespace Rectangles
     {
         public Rectangle()
         {
-            leftBoundCoordinate = upperBoundCoordinate = rightBoundCoordinate = lowerBoundCoordinate = 0;
         }
         public Rectangle(PointStruct startPointOfDiagonal, PointStruct endPointOfDiagonal)
         {
-            writeRectangleParametersOnDiagonal(startPointOfDiagonal, endPointOfDiagonal);
+            setRectangleParameters(startPointOfDiagonal, endPointOfDiagonal);
         }
 
-        public void DrawFigure(Graphics canvas)
+        public void setRectangleParameters(PointStruct startPointOfDiagonal, PointStruct endPointOfDiagonal)
         {
-            canvas.DrawRectangle(Pens.Black, this.xLeft, this.yTop, this.xRight - this.xLeft, this.yBottom - this.yTop);
-        }
-
-        public void writeRectangleParametersOnDiagonal(PointStruct firstPointOfDiagonal, PointStruct secondPointOfDiagonal)
-        {
-            if (firstPointOfDiagonal.x < secondPointOfDiagonal.x)
+            PointStruct startPoint, endPoint;
+            if (startPointOfDiagonal.x < endPointOfDiagonal.x)
             {
-                leftBoundCoordinate = firstPointOfDiagonal.x;
-                rightBoundCoordinate = secondPointOfDiagonal.x;
+                startPoint.x = startPointOfDiagonal.x;
+                endPoint.x = endPointOfDiagonal.x;
             }
             else
             {
-                leftBoundCoordinate = secondPointOfDiagonal.x;
-                rightBoundCoordinate = firstPointOfDiagonal.x; 
+                startPoint.x = endPointOfDiagonal.x;
+                endPoint.x = startPointOfDiagonal.x;
             }
-            if (firstPointOfDiagonal.y < secondPointOfDiagonal.y)
+            if (startPointOfDiagonal.y < endPointOfDiagonal.y)
             {
-                upperBoundCoordinate = firstPointOfDiagonal.y;
-                lowerBoundCoordinate = secondPointOfDiagonal.y;
+                startPoint.y = startPointOfDiagonal.y;
+                endPoint.y = endPointOfDiagonal.y;
             }
             else
             {
-                upperBoundCoordinate = secondPointOfDiagonal.y;
-                lowerBoundCoordinate = firstPointOfDiagonal.y;
+                startPoint.y = endPointOfDiagonal.y;
+                endPoint.y = startPointOfDiagonal.y;
+            }
+            StartPoint = startPoint;
+            width = endPoint.x - startPoint.x;
+            height = endPoint.y - startPoint.y;
+        }
+
+        public override void DrawFigure(Graphics canvas)
+        {
+            canvas.DrawRectangle(Pens.Black, StartPoint.x, StartPoint.y, Width, Height);
+        }
+
+        public int Width
+        {
+            get
+            {
+                return width;
+            }
+        }
+        public int Height
+        {
+            get
+            {
+                return height;
             }
         }
 
-        public int xLeft
-        {
-            get
-            {
-                return leftBoundCoordinate;
-            }
-        }
-        public int xRight
-        {
-            get
-            {
-                return rightBoundCoordinate;
-            }
-        }
-        public int yTop
-        {
-            get
-            {
-                return upperBoundCoordinate;
-            }
-        }
-        public int yBottom
-        {
-            get
-            {
-                return lowerBoundCoordinate;
-            }
-        }
-
-        private int leftBoundCoordinate;
-        private int upperBoundCoordinate;
-        private int rightBoundCoordinate;
-        private int lowerBoundCoordinate;
+        private int width;
+        private int height;
     }
 }

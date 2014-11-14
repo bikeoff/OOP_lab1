@@ -1,53 +1,44 @@
-﻿using System;
-using Figures;
+﻿using Figures;
 using Rectangles;
+using System;
 
 namespace Squares
 {
     public class Square : Rectangle
     {
-        public Square()
+        public Square(PointStruct startPointOfDiagonal, PointStruct endPointOfDiagonal)
         {
-            firstPointOfDiagonal.x = firstPointOfDiagonal.y = secondPointOfDiagonal.x = secondPointOfDiagonal.x = 0;
-            writeSquareParametersOnDiagonal(firstPointOfDiagonal, secondPointOfDiagonal);
-        }
-        public Square(Point startPointOfDiagonal, Point endPointOfDiagonal)
-        {
-            writeSquareParametersOnDiagonal(startPointOfDiagonal, endPointOfDiagonal);
+            setSquareParameters(startPointOfDiagonal, endPointOfDiagonal);
         }
 
-        public void writeSquareParametersOnDiagonal(Point startPointOfDiagonal, Point endPointOfDiagonal)
+        public void setSquareParameters(PointStruct startPointOfDiagonal, PointStruct endPointOfDiagonal)
         {
-            firstPointOfDiagonal = startPointOfDiagonal;
-            secondPointOfDiagonal = endPointOfDiagonal;
-            correctDiagonalForConversionToSquare();
-            writeRectangleParametersOnDiagonal(firstPointOfDiagonal, secondPointOfDiagonal);           
+            endPointOfDiagonal = correctEndPointOfDiagonalForConversionToSquare(startPointOfDiagonal, endPointOfDiagonal);
+            setRectangleParameters(startPointOfDiagonal, endPointOfDiagonal); 
         }
 
-        private Point firstPointOfDiagonal;
-        private Point secondPointOfDiagonal;
-
-        private void correctDiagonalForConversionToSquare()
+        private PointStruct correctEndPointOfDiagonalForConversionToSquare(PointStruct startPointOfDiagonal, PointStruct endPointOfDiagonal)
         {
             int sideLengthOfSquare;
-            int width = Math.Abs(secondPointOfDiagonal.x - firstPointOfDiagonal.x);
-            int height = Math.Abs(secondPointOfDiagonal.y - firstPointOfDiagonal.y);
+            int width = Math.Abs(endPointOfDiagonal.x - startPointOfDiagonal.x);
+            int height = Math.Abs(endPointOfDiagonal.y - startPointOfDiagonal.y);
             if (width > height)
             {
                 sideLengthOfSquare = width;
-                if (secondPointOfDiagonal.y < firstPointOfDiagonal.y)
-                    secondPointOfDiagonal.y = firstPointOfDiagonal.y - sideLengthOfSquare;
+                if (startPointOfDiagonal.y < endPointOfDiagonal.y)
+                    endPointOfDiagonal.y = startPointOfDiagonal.y + sideLengthOfSquare;
                 else
-                    secondPointOfDiagonal.y = firstPointOfDiagonal.y + sideLengthOfSquare;
+                    endPointOfDiagonal.y = startPointOfDiagonal.y - sideLengthOfSquare;
             }                
             else
             {
                 sideLengthOfSquare = height;
-                if (secondPointOfDiagonal.x < firstPointOfDiagonal.x)
-                    secondPointOfDiagonal.x = firstPointOfDiagonal.x - sideLengthOfSquare;
+                if (startPointOfDiagonal.x < endPointOfDiagonal.x)
+                    endPointOfDiagonal.x = startPointOfDiagonal.x + sideLengthOfSquare;
                 else
-                    secondPointOfDiagonal.x = firstPointOfDiagonal.x + sideLengthOfSquare;
-            }              
+                    endPointOfDiagonal.x = startPointOfDiagonal.x - sideLengthOfSquare;
+            }
+            return endPointOfDiagonal;
         }
     }
 }

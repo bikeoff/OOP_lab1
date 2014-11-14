@@ -1,47 +1,38 @@
-﻿using System;
+﻿using Ellipses;
 using Figures;
-using Ellipses;
+using System;
 
 namespace Circles
 {
     public class Circle : Ellipse
     {
-        public Circle()
+        public Circle(PointStruct centerPoint, PointStruct endPoint)
         {
-            endPointOfDiagonalForTransformToCircle.x = endPointOfDiagonalForTransformToCircle.y = 0;
-            writeCircleParametersOnDiagonal(endPointOfDiagonalForTransformToCircle, endPointOfDiagonalForTransformToCircle);
-        }
-        public Circle(Point center, Point endPointOfDiagonal)
-        {
-            writeCircleParametersOnDiagonal(center, endPointOfDiagonal);
+            StartPoint = centerPoint;
+            setCircleParameters(endPoint);
         }
 
-        public void writeCircleParametersOnDiagonal(Point center, Point endPointOfDiagonal)
+        public void setCircleParameters(PointStruct endPoint)
         {
-            centerPoint = center;
-            endPointOfDiagonalForTransformToCircle = endPointOfDiagonal;
-            correctDiagonalForConversionToSquare();
-            writeEllipseParametersOnDiagonal(center, endPointOfDiagonalForTransformToCircle);
+            Radius = Math.Sqrt(Math.Pow(endPoint.x - StartPoint.x, 2) + Math.Pow(endPoint.y - StartPoint.y, 2));
         }
 
-        public double radius
+        public double Radius
         {
             get
             {
-                return radiusOfCircle;
+                return radius;
+            }
+            set
+            {
+                radius = value;
+                PointStruct endPoint;
+                endPoint.x = StartPoint.x + (int)radius;
+                endPoint.y = StartPoint.y + (int)radius;
+                setEllipseParameters(endPoint);
             }
         }
 
-        private double radiusOfCircle;
-        private Point centerPoint;
-        private Point endPointOfDiagonalForTransformToCircle;
-
-        private void correctDiagonalForConversionToSquare()
-        {
-            radiusOfCircle = Math.Sqrt(Math.Pow(endPointOfDiagonalForTransformToCircle.x - centerPoint.x, 2) +
-                                       Math.Pow(endPointOfDiagonalForTransformToCircle.y - centerPoint.y, 2));
-            endPointOfDiagonalForTransformToCircle.x = centerPoint.x + (int)radiusOfCircle;
-            endPointOfDiagonalForTransformToCircle.y = centerPoint.y + (int)radiusOfCircle;
-        }
+        private double radius;
     }
 }

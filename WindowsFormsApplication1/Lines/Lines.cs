@@ -1,24 +1,38 @@
 ﻿using Figures;
+using System.Drawing;
 
 namespace Lines
 {
     public class Line : Figure
     {
-        public Line()
+        public Line(PointStruct start, PointStruct end)
         {
-            xStart = yStart = xEnd = yEnd = 0;
-        }
-        public Line(Point start, Point end)
-        {
-            xStart = start.x;
-            yStart = start.y;
-            xEnd = end.x;
-            yEnd = end.y;
+            StartPoint = start;
+            EndPoint = end;
         }
 
-        public int xStart;
-        public int yStart;
-        public int xEnd;
-        public int yEnd;
+        public override void DrawFigure(Graphics canvas)
+        {
+            canvas.DrawLine(Pens.Black, StartPoint.x, StartPoint.y, EndPoint.x, EndPoint.y);
+        }
+
+        public PointStruct EndPoint
+        {
+            get
+            {
+                PointStruct result;
+                result.x = xEnd;
+                result.y = yEnd;
+                return result;
+            }
+            set
+            {
+                xEnd = value.x;
+                yEnd = value.y;
+            }
+        }
+
+        private int xEnd;
+        private int yEnd;
     }
 }

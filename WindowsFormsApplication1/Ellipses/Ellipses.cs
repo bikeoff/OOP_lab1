@@ -1,5 +1,6 @@
-﻿using System;
-using Figures;
+﻿using Figures;
+using System;
+using System.Drawing;
 
 namespace Ellipses
 {
@@ -7,52 +8,51 @@ namespace Ellipses
     {
         public Ellipse()
         {
-            centerXcoordinate = centerYcoordinate = widthOfHorizontalHalfShaft = heightOfVerticalHalfShaft = 0;
         }
-        public Ellipse(Point centerPoint, Point endPointOfDiagonal)
+        public Ellipse(PointStruct centerPoint, PointStruct endPoint)
         {
-            writeEllipseParametersOnDiagonal(centerPoint, endPointOfDiagonal);
-        }
-
-        public void writeEllipseParametersOnDiagonal(Point firstPointOfDiagonal, Point secondPointOfDiagonal)
-        {
-            centerXcoordinate = firstPointOfDiagonal.x;
-            centerYcoordinate = firstPointOfDiagonal.y;
-            widthOfHorizontalHalfShaft = Math.Abs(secondPointOfDiagonal.x - firstPointOfDiagonal.x);
-            heightOfVerticalHalfShaft = Math.Abs(secondPointOfDiagonal.y - firstPointOfDiagonal.y);
+            StartPoint = centerPoint;
+            setEllipseParameters(endPoint);
         }
 
-        public int xCenter
+        public void setEllipseParameters(PointStruct endPoint)
         {
-            get
-            {
-                return centerXcoordinate;
-            }
+            widthOfHorizontalHalfShaft = Math.Abs(endPoint.x - StartPoint.x);
+            heightOfVerticalHalfShaft = Math.Abs(endPoint.y - StartPoint.y);
         }
-        public int yCenter
+
+        public override void DrawFigure(Graphics canvas)
         {
-            get
-            {
-                return centerYcoordinate;
-            }
+            PointStruct leftTopCorner = LeftTopCornerOfDescribedRectangle;
+            canvas.DrawEllipse(Pens.Black, leftTopCorner.x, leftTopCorner.y, Width, Height);
         }
-        public int halfWidth
+
+        public PointStruct LeftTopCornerOfDescribedRectangle
         {
             get
             {
-                return widthOfHorizontalHalfShaft;
-            }
-        }
-        public int halfHeight
-        {
-            get
-            {
-                return heightOfVerticalHalfShaft;
+                PointStruct result;
+                result.x = StartPoint.x - widthOfHorizontalHalfShaft;
+                result.y = StartPoint.y - heightOfVerticalHalfShaft;
+                return result;
             }
         }
 
-        private int centerXcoordinate;
-        private int centerYcoordinate;
+        public int Width
+        {
+            get
+            {
+                return 2 * widthOfHorizontalHalfShaft;
+            }
+        }
+        public int Height
+        {
+            get
+            {
+                return 2 * heightOfVerticalHalfShaft;
+            }
+        }
+
         private int widthOfHorizontalHalfShaft;
         private int heightOfVerticalHalfShaft;
     }
